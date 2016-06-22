@@ -1,8 +1,6 @@
 package blayzer.logparser;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -45,8 +43,7 @@ public class GUI extends JFrame {
 	
     JButton button1 = new JButton("Выбрать лог-файл");
     panel.add(button1);
-    button1.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
+    button1.addActionListener(action -> {
         	
             int ret = fileopen.showDialog(null, "Открыть файл");                
             if (ret == JFileChooser.APPROVE_OPTION) {
@@ -62,16 +59,13 @@ public class GUI extends JFrame {
                 }
                 
                 filename = file.getName();
-                label1.setText("<html> Выбран файл: " + filename + "<br>" + "Нажмите: Преобразовать </html>");
+                label1.setText("Выбран файл: " + filename + "\nНажмите: Преобразовать");
             }
-        }
-    });
+        });
     
     JButton button2 = new JButton("Преобразовать");
     panel.add(button2);
-    button2.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-        	
+    button2.addActionListener(action -> {
         	String result = "";
         	
         	try {
@@ -94,12 +88,11 @@ public class GUI extends JFrame {
 					}
 					
 				}
-				label1.setText("<html> Выбран файл: " + filename + "<br>" + "Готово. Создан файл " + filename + ".mg.txt. </html>");
+				label1.setText("Выбран файл: " + filename + "\nГотово. Создан файл " + filename + ".mg.txt.");
 			} catch (IOException error) {
 				error.printStackTrace();
 			}
-        }
-    });
+        });
 	
     getContentPane().add(panel);
 	}
