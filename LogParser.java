@@ -20,8 +20,9 @@ public class LogParser extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private BufferedReader StringFromFile;
 	private FileInputStream SelectedFile;
-	private String str;
 	private String filename;
+	private String str;
+        private StringBuilder result = new StringBuilder();
 	
 	JFileChooser fileopen = new JFileChooser();
 	File file;
@@ -64,8 +65,6 @@ public class LogParser extends JFrame {
     panel.add(button2);
     button2.addActionListener(action -> {
         	
-        	String result = "";
-        	
         	try {
 				while ((str = StringFromFile.readLine()) != null){
 					if(str.contains("Injected new Forge block")){
@@ -73,10 +72,10 @@ public class LogParser extends JFrame {
 						str = str.replaceAll("(\\s\\with.*)","" );
 						
 						if (!str.isEmpty()){
-						result += str+ "\n";
+						result.append(str).append('\n');
 						}
 						try(FileWriter fw = new FileWriter(file.getPath() + ".mg.txt")) {
-							fw.write(result);
+							fw.write(result.toString());
 						}
 						catch(IOException error){
 				             
