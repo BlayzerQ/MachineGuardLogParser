@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class GUI extends JFrame {
+public class LogParser extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private BufferedReader StringFromFile;
@@ -26,7 +26,7 @@ public class GUI extends JFrame {
 	JFileChooser fileopen = new JFileChooser();
 	File file;
 	
-	public GUI() {
+	public LogParser() {
 	super("MachineGuard Log Parser");
 	setBounds(450, 250, 400, 400);
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -95,7 +95,7 @@ public class GUI extends JFrame {
 	}
 	
 	public static void main(String[] args){
-		GUI app = new GUI();
+		LogParser app = new LogParser();
 		app.setVisible(true);
 	}
 
