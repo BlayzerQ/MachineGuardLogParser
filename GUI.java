@@ -1,18 +1,12 @@
 package blayzer.logparser;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -22,7 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class GUI extends JFrame {
-	
+
+	private static final long serialVersionUID = 1L;
 	private BufferedReader StringFromFile;
 	private FileInputStream SelectedFile;
 	private String str;
@@ -33,7 +28,7 @@ public class GUI extends JFrame {
 	
 	public GUI() {
 	super("MachineGuard Log Parser");
-	setBounds(450, 250, 400, 400); //Добавить получение размера экрана и считать
+	setBounds(450, 250, 400, 400);
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 	JPanel panel = new JPanel();
@@ -45,8 +40,7 @@ public class GUI extends JFrame {
 	
     JButton button1 = new JButton("Выбрать лог-файл");
     panel.add(button1);
-    button1.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
+    button1.addActionListener(action -> {
         	
             int ret = fileopen.showDialog(null, "Открыть файл");                
             if (ret == JFileChooser.APPROVE_OPTION) {
@@ -64,13 +58,11 @@ public class GUI extends JFrame {
                 filename = file.getName();
                 label1.setText("<html> Выбран файл: " + filename + "<br>" + "Нажмите: Преобразовать </html>");
             }
-        }
     });
     
     JButton button2 = new JButton("Преобразовать");
     panel.add(button2);
-    button2.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
+    button2.addActionListener(action -> {
         	
         	String result = "";
         	
@@ -82,7 +74,6 @@ public class GUI extends JFrame {
 						
 						if (!str.isEmpty()){
 						result += str+ "\n";
-						//System.out.println(result);
 						}
 						try(FileWriter fw = new FileWriter(file.getPath() + ".mg.txt")) {
 							fw.write(result);
@@ -98,7 +89,6 @@ public class GUI extends JFrame {
 			} catch (IOException error) {
 				error.printStackTrace();
 			}
-        }
     });
 	
     getContentPane().add(panel);
