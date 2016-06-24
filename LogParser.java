@@ -12,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class LogParser extends JFrame {
@@ -32,15 +31,14 @@ public class LogParser extends JFrame {
 	setBounds(450, 250, 400, 400);
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
-	JPanel panel = new JPanel();
-	panel.setLayout(new GridLayout(3, 1));
+	setLayout(new GridLayout(3, 1));
 	
 	final JLabel label1 = new JLabel("Выберите лог-файл");
 	label1.setHorizontalAlignment(SwingConstants.CENTER);
-	panel.add(label1);
+	add(label1);
 	
     JButton button1 = new JButton("Выбрать лог-файл");
-    panel.add(button1);
+    add(button1);
     button1.addActionListener(action -> {
         	
             int ret = fileopen.showDialog(null, "Открыть файл");                
@@ -62,7 +60,7 @@ public class LogParser extends JFrame {
     });
     
     JButton button2 = new JButton("Преобразовать");
-    panel.add(button2);
+    add(button2);
     button2.addActionListener(action -> {
         	
         	try {
@@ -89,8 +87,7 @@ public class LogParser extends JFrame {
 				error.printStackTrace();
 			}
     });
-	
-    getContentPane().add(panel);
+    
 	}
 	
 	public static void main(String[] args){
