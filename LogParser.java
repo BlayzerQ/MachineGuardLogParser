@@ -30,7 +30,7 @@ public class LogParser extends JFrame {
 	super("MachineGuard Log Parser");
 	setBounds(450, 250, 400, 400);
 	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	
+	setLocationRelativeTo(null);
 	setLayout(new GridLayout(3, 1));
 	
 	final JLabel label1 = new JLabel("Выберите лог-файл");
